@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Amrita Course Registration PDF</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        header {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            padding: 10px;
+            gap: 50px;
+        }
+
+        header .barcode {
+            width: 50vw;
+            height: 100px;
+        }
+
+        #logo {
+            width: 60vw;
+        }
+
+        #details,
+        #details tbody {
+            padding: 10px;
+            text-align: center;
+        }
+
+        main {
+            padding: 10px;
+        }
+
+        @media print {
+            .details {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="https://dt19wmazj2dns.cloudfront.net/wp-content/uploads/2023/01/amrita-c20-logo-colored.svg"
+            alt="logo" id="logo">
+        <svg class="barcode" jsbarcode-value="<%= data.usn %>" jsbarcode-textmargin="0" jsbarcode-fontoptions="bold">
+        </svg>
+    </header>
+    <main>
+        <h2 style="text-align: center;">Course Registration Details</h2>
+        <p><b>Student Name:</b> <%= data.name %></p>
+        <p><b>Date:</b> <%= data.date %></p>
+        <center>
+            <table id="details" border="true">
+                <tbody>
+                    <tr>
+                        <th>Course Code</th>
+                        <th>Transaction #</th>
+                        <th>Transaction Date</th>
+                    </tr>
+                    <% data.courses.forEach((course_code) => { %>
+                    <tr>
+                        <td><svg class="barcode" jsbarcode-value="<%= course_code %>" jsbarcode-textmargin="0"
+                                jsbarcode-fontoptions="bold">
+                            </svg></td>
+                        <td><%= data.txn_id %></td>
+                        <td><%= data.txn_date %></td>
+                    </tr>
+                    <% }); %>
+
+                </tbody>
+            </table>
+        </center>
+        <script>
+            JsBarcode(".barcode").init();
+        </script>
+    </main>
+</body>
+
+</html>
