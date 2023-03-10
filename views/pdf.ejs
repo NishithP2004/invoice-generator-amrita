@@ -17,9 +17,8 @@
         header {
             display: flex;
             flex-direction: row;
-            justify-content: flex-start;
+            justify-content: space-between;
             padding: 10px;
-            gap: 50px;
         }
 
         header .barcode {
@@ -31,20 +30,13 @@
             width: 60vw;
         }
 
-        #details,
-        #details tbody {
+        #details, #details tbody {
             padding: 10px;
             text-align: center;
         }
 
         main {
             padding: 10px;
-        }
-
-        @media print {
-            .details {
-                break-inside: avoid;
-            }
         }
     </style>
 </head>
