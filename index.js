@@ -43,7 +43,7 @@ app.post("/generate", (req, res) => {
 })
 
 async function convertDocToPdf(data) {
-    let ejs_template = fs.readFileSync("views/PDF.ejs", 'utf-8');
+    let ejs_template = fs.readFileSync(__dirname + "/views/pdf.ejs", 'utf-8');
     let html = ejs.render(ejs_template, {
         data
     });
